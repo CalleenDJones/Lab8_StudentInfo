@@ -33,61 +33,45 @@ namespace Lab8_StudentInfo
 
             //Introduce user
             Console.WriteLine("Welcome to our C# Class.");
-            
-            //Ask user to select student
-            Console.WriteLine("Which student would you like to learn more about?");
-            Console.WriteLine("Please enter a number from 1-20: ");
-            //Returns users student selection designated as StudentID
-            string StudentID = Console.ReadLine();
-
-            //Call ValidStudent Method, should return an int value
-            int Choosen = ValidStudent(StudentID);
-            //take returned int value and locate that student
-            //we subtract 1 to line up with our array
-            Console.WriteLine($"Student {StudentID[Choosen - 1]} is {Student[Choosen - 1]}.");
-
-            ////Connects the Student(Element) with the Index number 
-            //for (i = 0; i < StudentID.Length; i++)
-            //{
-            //    Console.WriteLine($"Student {StudentID[i]} is {Student[i]}.");
-            //}
-
-            ////if (i > 0 && i < Student.Length)
-
-
-            Console.WriteLine($"\nWould you like to know about {Student[Choosen - 1]}'s Hometown or Favorite Food?");
-            Console.WriteLine($"Select either 'hometown' or 'favorite food':");
-            string KnowMore = Console.ReadLine().ToLower();
-
-            //string KnowMore = "favorite food";
-            //KnowMore = Console.ReadLine();
-
-            //string KnowMore = "Hometown";
-            //KnowMore = Console.ReadLine();
-
-            if (KnowMore == "hometown")
+            bool success = true;
+            while (success)
             {
-              
-            }
-           
-            else
-            {
-                Console.WriteLine("That data does not exist. Please try again.");
-                Console.WriteLine("Press enter or 'hometown' or 'favorite food.");
-            }
-            else
-            {
-                Console.WriteLine($"Would you like to know more about {Student[Choosen - 1]}? enter y or n):");
+                //Ask user to select student
+                Console.WriteLine("Which student would you like to learn more about?");
+                Console.WriteLine("Please enter a number from 1-20: ");
+                //Returns users student selection designated as StudentID
+                string StudentID = Console.ReadLine();
+
+                //Call ValidStudent Method, should return an int value
+                int Choosen = ValidStudent(StudentID);
+                //take returned int value and locate that student
+                //we subtract 1 to line up with our array
+                Console.WriteLine($"Student {StudentID[Choosen - 1]} is {Student[Choosen - 1]}.");
+
+
+                Console.WriteLine($"\nWould you like to know about {Student[Choosen - 1]}'s Hometown or Favorite Food?");
+                Console.WriteLine($"Select either 'hometown' or 'favorite food':");
+                string KnowMore = Console.ReadLine().ToLower();
+
+                if (KnowMore == "hometown")
+                {
+                    Console.WriteLine($"{Student[Choosen - 1]} is from {HometownLocation[Choosen - 1]}.");
+                }
+
+                else if (KnowMore == "favorite food")
+                {
+                    Console.WriteLine($"{Student[Choosen - 1]} is from {TopFood[Choosen - 1]}.");
+                }
+
+                Console.WriteLine($"\nWould you like to know more about {Student[Choosen - 1]}? enter y or n):");
                 string GoOn = Console.ReadLine();
 
                 if (GoOn == "n")
                 {
-                    return;
+                    success = false;
                 }
             }
-
             Console.WriteLine("Please press enter to exit...");
-
             Console.ReadKey();
         }
 
