@@ -51,41 +51,41 @@ namespace Lab8_StudentInfo
                 Console.WriteLine($"Student {StudentID} is {Student[Choosen - 1]}.");
 
 
+
                 Console.WriteLine($"\nWould you like to know about {Student[Choosen - 1]}'s Hometown or Favorite Food?");
                 Console.WriteLine($"Select either 'hometown' or 'favorite food':");
                 string KnowMore = Console.ReadLine().ToLower();
 
-                while (success)
+
                 {
-                    if (KnowMore != "hometown" && KnowMore != "favorite food")
-                    {
-                        Console.WriteLine($"\nSorry, that's an invalid response");
-                        Console.WriteLine($"Select either 'hometown' or 'favorite food':");
-                        KnowMore = Console.ReadLine().ToLower();
-                    }
-                    else if (KnowMore == "hometown")
-                    {
-                        Console.WriteLine($"{Student[Choosen - 1]} is from {HometownLocation[Choosen - 1]}.");
-                        success = false;
-                    }
+                    while (success)
+                        if (KnowMore != "hometown" && KnowMore != "favorite food")
+                        {
+                            Console.WriteLine($"\nSorry, that's an invalid response");
+                            Console.WriteLine($"Select either 'hometown' or 'favorite food':");
+                            KnowMore = Console.ReadLine().ToLower();
+                        }
+                        else if (KnowMore == "hometown")
+                        {
+                            Console.WriteLine($"{Student[Choosen - 1]} is from {HometownLocation[Choosen - 1]}.");
+                            success = false;
+                        }
 
-                    else if (KnowMore == "favorite food")
-                    {
-                        Console.WriteLine($"{Student[Choosen - 1]} is from {TopFood[Choosen - 1]}.");
-                        success = false;
-                    }
-
+                        else if (KnowMore == "favorite food")
+                        {
+                            Console.WriteLine($"{Student[Choosen - 1]} is from {TopFood[Choosen - 1]}.");
+                            success = false;
+                        }
                 }
-
                 success = true;
 
-                Console.WriteLine($"\nWould you like to know more about {Student[Choosen - 1]}? enter y or n):");
+                Console.WriteLine($"\nWould you like to know more about another student? enter y or n):");
                 string GoOn = Console.ReadLine();
-
                 if (GoOn == "n")
                 {
                     success = false;
                 }
+
             }
             Console.WriteLine("Please press enter to exit...");
             Console.ReadKey();
@@ -116,8 +116,6 @@ namespace Lab8_StudentInfo
                     return Num1;
                 }
             }
-
-
         }
     }
 }
