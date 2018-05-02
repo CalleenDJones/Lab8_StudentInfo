@@ -44,26 +44,40 @@ namespace Lab8_StudentInfo
 
                 //Call ValidStudent Method, should return an int value
                 int Choosen = ValidStudent(StudentID);
-                
+
 
                 //take returned int value and locate that student
                 //we subtract 1 to line up with our array
-                Console.WriteLine($"Student {StudentID[Choosen - 1]} is {Student[Choosen - 1]}.");
+                Console.WriteLine($"Student {StudentID} is {Student[Choosen - 1]}.");
 
 
                 Console.WriteLine($"\nWould you like to know about {Student[Choosen - 1]}'s Hometown or Favorite Food?");
                 Console.WriteLine($"Select either 'hometown' or 'favorite food':");
                 string KnowMore = Console.ReadLine().ToLower();
 
-                if (KnowMore == "hometown")
+                while (success)
                 {
-                    Console.WriteLine($"{Student[Choosen - 1]} is from {HometownLocation[Choosen - 1]}.");
+                    if (KnowMore != "hometown" && KnowMore != "favorite food")
+                    {
+                        Console.WriteLine($"\nSorry, that's an invalid response");
+                        Console.WriteLine($"Select either 'hometown' or 'favorite food':");
+                        KnowMore = Console.ReadLine().ToLower();
+                    }
+                    else if (KnowMore == "hometown")
+                    {
+                        Console.WriteLine($"{Student[Choosen - 1]} is from {HometownLocation[Choosen - 1]}.");
+                        success = false;
+                    }
+
+                    else if (KnowMore == "favorite food")
+                    {
+                        Console.WriteLine($"{Student[Choosen - 1]} is from {TopFood[Choosen - 1]}.");
+                        success = false;
+                    }
+
                 }
 
-                else if (KnowMore == "favorite food")
-                {
-                    Console.WriteLine($"{Student[Choosen - 1]} is from {TopFood[Choosen - 1]}.");
-                }
+                success = true;
 
                 Console.WriteLine($"\nWould you like to know more about {Student[Choosen - 1]}? enter y or n):");
                 string GoOn = Console.ReadLine();
@@ -90,7 +104,7 @@ namespace Lab8_StudentInfo
                     Input = Console.ReadLine();
                 }
                 //see if valid number is in a certain range
-                else if (Num1  < 1 && Num1 > 20)
+                else if (Num1 < 1 || Num1 > 20)
                 {
                     Console.WriteLine("Sorry, that student does not exist.");
                     Console.WriteLine("Please try again. (enter a number 1-20):");
@@ -102,7 +116,7 @@ namespace Lab8_StudentInfo
                     return Num1;
                 }
             }
-            
+
 
         }
     }
