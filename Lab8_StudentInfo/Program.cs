@@ -10,7 +10,7 @@ namespace Lab8_StudentInfo
     {
         static void Main(string[] args)
         {
-            
+            int i;
             //Declare all Array elements for StudentID, Hometown and FavoriteFood
             string[] Student = {"Peter Parker", "Steve Rogers", "Luke Cage", "Matt Murdock",
             "Jessica Jones", "James Bucky Barnes", "Bruce Banner", "King T'Challa",
@@ -30,76 +30,94 @@ namespace Lab8_StudentInfo
             "Avacados", "Chicken Fried Rice", "Beef BBQ Ribs", "Egg Rolls", "Tacos",
             "Beef Burritos", "Chili Con Corne", "Hoisin Chicken", "Chicken Tenders",
             "Beer Battered Cod with Fries", "Lemon Pepper Roasted Chicken"};
-            
+
             //Introduce user
             Console.WriteLine("Welcome to our C# Class.");
+            
             //Ask user to select student
             Console.WriteLine("Which student would you like to learn more about?");
             Console.WriteLine("Please enter a number from 1-20: ");
-
+            //Returns users student selection designated as StudentID
             string StudentID = Console.ReadLine();
-            
-            //Call ValidStudent Method
-            //int Choosen = ValidStudent(StudentID);
 
-            int i;
-            int.TryParse(StudentID, out i);
-            i--;
+            //Call ValidStudent Method, should return an int value
+            int Choosen = ValidStudent(StudentID);
+            //take returned int value and locate that student
+            //we subtract 1 to line up with our array
+            Console.WriteLine($"Student {StudentID[Choosen - 1]} is {Student[Choosen - 1]}.");
 
-            //Connects the Student(Element) with the Index number 
-            for (i = 0; i < StudentID.Length; i++)
-            {
-                Console.WriteLine($"Student {StudentID[i]} is {Student[i]}.");
-            }
+            ////Connects the Student(Element) with the Index number 
+            //for (i = 0; i < StudentID.Length; i++)
+            //{
+            //    Console.WriteLine($"Student {StudentID[i]} is {Student[i]}.");
+            //}
+
+            ////if (i > 0 && i < Student.Length)
 
 
-            Console.WriteLine($"\nWould you like to know about {Student[i]}'s Hometown or Favorite Food?");
+            Console.WriteLine($"\nWould you like to know about {Student[Choosen - 1]}'s Hometown or Favorite Food?");
             Console.WriteLine($"Select either 'hometown' or 'favorite food':");
-            Console.ReadLine().ToLower();
+            string KnowMore = Console.ReadLine().ToLower();
 
-            string ChoseFood = "FavoriteFood";
-            ChoseFood = Console.ReadLine();
+            //string KnowMore = "favorite food";
+            //KnowMore = Console.ReadLine();
 
-            string ChoseHome = "Hometown";
-            ChoseHome = Console.ReadLine();
+            //string KnowMore = "Hometown";
+            //KnowMore = Console.ReadLine();
 
-            if (ChoseFood == "FavoriteFood")
+            if (KnowMore == "hometown")
             {
-                Console.WriteLine($"{Student[i]} is from {HometownLocation[i]}.");
-                Console.WriteLine($"Would you like to know more about {Student[i]}? (enter hometown or food):");
+              
             }
-            else if (ChoseHome == "Hometown")
-            {
-                Console.WriteLine($"{Student[i]} likes {TopFood[i]}.");
-                Console.WriteLine($"Would you like to know more about {Student[i]}? enter y or n):");
-                string GoOn = Console.ReadLine();
-                if (GoOn == "n")
-                {
-                    return;
-                }
-            }
+           
             else
             {
                 Console.WriteLine("That data does not exist. Please try again.");
                 Console.WriteLine("Press enter or 'hometown' or 'favorite food.");
             }
-            
+            else
+            {
+                Console.WriteLine($"Would you like to know more about {Student[Choosen - 1]}? enter y or n):");
+                string GoOn = Console.ReadLine();
+
+                if (GoOn == "n")
+                {
+                    return;
+                }
+            }
+
             Console.WriteLine("Please press enter to exit...");
 
             Console.ReadKey();
         }
-        
-        //public static int ValidStudent(string Input)
-        //{
-        //    int Num1;
-        //    while (!int.TryParse(Input, out Num1))
-        //    {
-        //        Console.WriteLine("Sorry, that student does not exist.");
-        //        Console.WriteLine("Please try again. (enter a number 1-20):");
-        //        Input = Console.ReadLine();
-        //    }
-        //    return Num1;
-       
-        //}
+
+        public static int ValidStudent(string Input)
+        {
+            int Num1;
+            while (true)
+            {
+                //try to make string input a valid number
+                if (!int.TryParse(Input, out Num1))
+                {
+                    Console.WriteLine("Sorry, that student does not exist.");
+                    Console.WriteLine("Please try again. (enter a number 1-20):");
+                    Input = Console.ReadLine();
+                }
+                //see if valid number is in a certain range
+                else if (Num1 < 1 && Num1 > 20)
+                {
+                    Console.WriteLine("Sorry, that student does not exist.");
+                    Console.WriteLine("Please try again. (enter a number 1-20):");
+                    Input = Console.ReadLine();
+
+                }
+                else
+                {
+                    return Num1;
+                }
+            }
+            
+
+        }
     }
 }
