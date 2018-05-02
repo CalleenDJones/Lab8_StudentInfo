@@ -44,6 +44,8 @@ namespace Lab8_StudentInfo
 
                 //Call ValidStudent Method, should return an int value
                 int Choosen = ValidStudent(StudentID);
+                
+
                 //take returned int value and locate that student
                 //we subtract 1 to line up with our array
                 Console.WriteLine($"Student {StudentID[Choosen - 1]} is {Student[Choosen - 1]}.");
@@ -88,7 +90,7 @@ namespace Lab8_StudentInfo
                     Input = Console.ReadLine();
                 }
                 //see if valid number is in a certain range
-                else if (Num1 < 1 && Num1 > 20)
+                else if (Num1  < 1 && Num1 > 20)
                 {
                     Console.WriteLine("Sorry, that student does not exist.");
                     Console.WriteLine("Please try again. (enter a number 1-20):");
